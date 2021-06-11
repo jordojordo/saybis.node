@@ -1,7 +1,7 @@
 FROM node:14
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR /saybis-node
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -15,5 +15,5 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-EXPOSE 8080
-CMD [ "node", "app.js" ]
+EXPOSE 3000
+CMD npm start
