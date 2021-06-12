@@ -1,6 +1,6 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
-const createTransaction = async (req) => {
+const createTransaction = (req) => {
   const reqTarget = req.body.RequestTarget;
 
   const options = {
