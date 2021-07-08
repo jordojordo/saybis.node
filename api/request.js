@@ -1,21 +1,34 @@
-const { createProxyMiddleware } = require("http-proxy-middleware");
+const puppeteer = require("puppeteer");
+const replace = require("absolutify");
+const { response } = require("express");
 
-const createTransaction = (req) => {
-  const reqTarget = req.body.RequestTarget;
+const createTransaction = async (req, res) => {
+  const { RequestTarget } = req.body;
+  let url = "";
 
-  const options = {
-    target: reqTarget, // target host
-    changeOrigin: true,
-    ws: true,
-    pathRewrite: {
-      "^/api/old-path": "/api/new-path", // rewrite path
-      "^/api/remove/path": "/path", // remove base path
-    },
-  };
+  if (!RequestTarget) {
+    return response.send("No url provided");
+  } else {
+    try {
+      RequestTarget.includes("http")
+        ? (url = RequestTarget)
+        : (url = "https://" + RequestTarget);
 
-  const requestProxy = createProxyMiddleware(options);
+      const browser = await puppeteer.launch();
+      const page = await browser.newPage();
+      await page.goto(url);
 
-  return requestProxy;
+      let document = await page.evaluate(
+        () => document.documentElement.outerHTML
+      );
+      document = replace(document, `/?url=${url.split("/")[0]}`);
+
+      return res.send(document);
+    } catch (err) {
+      console.log(err);
+      return err;
+    }
+  }
 };
 
 exports.createTransaction = createTransaction;
