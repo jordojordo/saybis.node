@@ -5,8 +5,8 @@ const createTransaction = (req) => {
 
   const options = {
     target: reqTarget, // target host
-    onProxyRes: function (proxyRes, req, res) {
-      proxyRes.headers["Access-Control-Allow-Origin"] = "*";
+    onProxyRes: function(proxyRes, req, res) {
+      proxyRes.headers["Access-Control-Allow-Origin"] = "http://saybis.xyz";
     },
     ws: true,
     pathRewrite: {
