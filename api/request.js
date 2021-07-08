@@ -5,7 +5,9 @@ const createTransaction = (req) => {
 
   const options = {
     target: reqTarget, // target host
-    changeOrigin: true,
+    onProxyRes: function (proxyRes, req, res) {
+      proxyRes.headers["Access-Control-Allow-Origin"] = "*";
+    },
     ws: true,
     pathRewrite: {
       "^/api/old-path": "/api/new-path", // rewrite path
