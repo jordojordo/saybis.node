@@ -10,7 +10,7 @@ var indexRouter = require("./routes/index");
 var app = express();
 
 var corsOptions = {
-  origin: "https://saybis.xyz",
+  origin: "http://localhost:8080",
 };
 
 // view engine setup
