@@ -7,6 +7,7 @@ const createStream = (req, res) => {
   }
 
   const { video } = req.query
+  const videoType = video.split(".").pop();
   const videoPath = `./assets/videos/${video}`;
   const videoSize = fs.statSync(videoPath).size;
 
@@ -22,7 +23,7 @@ const createStream = (req, res) => {
     "Content-Range": `bytes ${start}-${end}/${videoSize}`,
     "Accept-Ranges": "bytes",
     "Content-Length": contentLength,
-    "Content-Type": "video/mp4",
+    "Content-Type": `video/${videoType}`,
   };
 
   // HTTP Status 206 for Partial Content

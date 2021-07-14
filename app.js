@@ -11,7 +11,7 @@ const streamRouter = require("./routes/stream");
 const app = express();
 
 const corsOptions = {
-  origin: ["https://saybis.xyz", "https://yokanga.xyz", "http://yokanga.xyz", "http://localhost"],
+  origin: ["https://saybis.xyz", "https://yokanga.xyz", "http://yokanga.xyz"],
 };
 
 // view engine setup
