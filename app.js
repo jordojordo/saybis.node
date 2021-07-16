@@ -7,11 +7,12 @@ const logger = require("morgan");
 
 const indexRouter = require("./routes/index");
 const streamRouter = require("./routes/stream");
+const musicRouter = require("./routes/music");
 
 const app = express();
 
 const corsOptions = {
-  origin: ["https://saybis.xyz", "https://yokanga.xyz"],
+  origin: ["https://saybis.xyz", "https://yokanga.xyz", "http://localhost"],
 };
 
 // view engine setup
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", cors(corsOptions), indexRouter);
 app.use("/stream*", cors(corsOptions), streamRouter);
+app.use("/music*", cors(corsOptions), musicRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
