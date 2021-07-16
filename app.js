@@ -12,7 +12,7 @@ const musicRouter = require("./routes/music");
 const app = express();
 
 const corsOptions = {
-  origin: ["https://saybis.xyz", "https://yokanga.xyz", "http://localhost"],
+  origin: ["https://saybis.xyz", "https://yokanga.xyz"],
 };
 
 // view engine setup
