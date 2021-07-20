@@ -6,30 +6,30 @@ const createMusicStream = (req, res) => {
     res.status(400).send("Requires range header");
   }
 
-  const { music } = req.query;
-  const musicPath = `./assets/music/${music}`;
-  const musicSize = fs.statSync(musicPath).size;
+  const { song } = req.query;
+  const songPath = `./assets/music/${song}`;
+  const songSize = fs.statSync(songPath).size;
 
   // Parse Range
   // Example: "bytes=32324-"
   const CHUNK_SIZE = 10 ** 6; // 1MB
   const start = Number(range.replace(/\D/g, ""));
-  const end = Math.min(start + CHUNK_SIZE, musicSize - 1);
+  const end = Math.min(start + CHUNK_SIZE, songSize - 1);
 
   // create headers
   const contentLength = end - start + 1;
   const headers = {
-    "Content-Range": `bytes ${start}-${end}/${musicSize}`,
+    "Content-Range": `bytes ${start}-${end}/${songSize}`,
     "Accept-Ranges": "bytes",
     "Content-Length": contentLength,
-    "Content-Type": "audio/mpeg",
+    "Content-Type": "audio/ogg",
   };
 
   // HTTP Status 206 for Partial Content
   res.writeHead(206, headers);
 
   // create music read stream for this particular chunk
-  const musicStream = fs.createReadStream(musicPath, { start, end });
+  const musicStream = fs.createReadStream(songPath, { start, end });
   musicStream.on("error", (error) => {
     console.log(error);
     res.sendStatus(500);
