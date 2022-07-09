@@ -1,5 +1,5 @@
 const fs = require("fs");
-const pipe = require("../methods/pipe.js");
+const pipe = require("../methods/pipe");
 
 const createStream = (req, res) => {
   const range = req.headers.range;

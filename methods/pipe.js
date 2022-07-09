@@ -1,4 +1,4 @@
-function pipe( range, type, size ) {
+const pipe = ( range, type, size ) => {
   // Parse Range
   // Example: "bytes=32324-"
   const CHUNK_SIZE = 10 ** 6; // 1MB
@@ -14,3 +14,5 @@ function pipe( range, type, size ) {
     "Content-Type": type ? `video/${type}` : "audio/ogg",
   };
 }
+
+module.exports = { pipe };
