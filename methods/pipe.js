@@ -15,4 +15,4 @@ const pipe = ( range, type, size ) => {
   };
 }
 
-module.exports = { pipe };
+exports.pipe = pipe;
