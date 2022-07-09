@@ -1,10 +1,10 @@
 {
-  "name": "saybis.node",
-  "version": "1.0.0",
-  "description": "proxy api for saybis.xyz",
+  "name": "greeves",
+  "version": "v0.1.0",
+  "description": "api for yokanga",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

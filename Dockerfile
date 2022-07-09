@@ -1,3 +1,4 @@
+#!/bin/bash
 FROM node:latest
 
 WORKDIR /saybis-node
