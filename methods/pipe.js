@@ -1,4 +1,4 @@
-const pipe = ( range, type, size ) => {
+const pipe = ( range, size, type ) => {
   // Parse Range
   // Example: "bytes=32324-"
   const CHUNK_SIZE = 10 ** 6; // 1MB
@@ -11,7 +11,7 @@ const pipe = ( range, type, size ) => {
     "Content-Range": `bytes ${ start }-${ end }/${ size }`,
     "Accept-Ranges": "bytes",
     "Content-Length": contentLength,
-    "Content-Type": type ? `video/${type}` : "audio/ogg",
+    "Content-Type": type ? `video/${ type }` : "audio/ogg",
   };
 }
 

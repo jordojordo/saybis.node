@@ -11,7 +11,7 @@ const createMusicStream = (req, res) => {
   const songPath = `./assets/music/${ req.query.song }`;
   const songSize = fs.statSync(songPath).size;
 
-  const headers = pipe({ range: range, size: songSize });
+  const headers = pipe({ range, songSize });
 
   // HTTP Status 206 for Partial Content
   res.writeHead(206, headers);

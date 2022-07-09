@@ -13,7 +13,7 @@ const createStream = (req, res) => {
   const videoPath = `./assets/videos/${ video }`;
   const videoSize = fs.statSync(videoPath).size;
 
-  const headers = pipe({ range: range, type: videoType, size: videoSize });
+  const headers = pipe({ range, videoSize, videoType });
 
   // HTTP Status 206 for Partial Content
   res.writeHead(206, headers);
