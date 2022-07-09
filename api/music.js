@@ -1,6 +1,5 @@
-import { pipe } from "../methods/pipe.js";
-
 const fs = require("fs");
+const pipe = require("../methods/pipe.js");
 
 const createMusicStream = (req, res) => {
   const { range } = req.headers;
