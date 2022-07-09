@@ -5,13 +5,15 @@ const createTransaction = async (req, res) => {
   const { RequestTarget } = req.body;
   let url = "";
 
-  if (!RequestTarget) {
+  if ( !RequestTarget ) {
     return response.send("No url provided");
   } else {
     try {
-      RequestTarget.includes("http")
-        ? (url = RequestTarget)
-        : (url = "https://" + RequestTarget);
+      if ( RequestTarget.includes("http") ) {
+        url = RequestTarget;
+      } else {
+        url = "https://" + RequestTarget;
+      }
 
       const browser = await puppeteer.launch({
         args: [
@@ -27,9 +29,9 @@ const createTransaction = async (req, res) => {
       );
 
       return res.send(document);
-    } catch (err) {
-      console.log(err);
-      return err;
+    } catch (e) {
+      console.error(e);
+      return e;
     }
   }
 };
