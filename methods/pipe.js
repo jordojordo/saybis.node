@@ -1,4 +1,4 @@
-const pipe = ( range, type, size ) => {
+function pipe( range, type, size ) {
   // Parse Range
   // Example: "bytes=32324-"
   const CHUNK_SIZE = 10 ** 6; // 1MB
