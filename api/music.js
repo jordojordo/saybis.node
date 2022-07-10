@@ -1,5 +1,4 @@
 const fs = require("fs");
-const { pipe } = require("../methods/pipe");
 
 const createMusicStream = (req, res) => {
   const { range } = req.headers;
@@ -11,7 +10,18 @@ const createMusicStream = (req, res) => {
   const songPath = `./assets/music/${ req.query.song }`;
   const songSize = fs.statSync(songPath).size;
 
-  const headers = pipe({ range, songSize });
+  const CHUNK_SIZE = 10 ** 6; // 1MB
+  const start = Number(range.replace(/\D/g, ""));
+  const end = Math.min(start + CHUNK_SIZE, songSize - 1);
+
+  const contentLength = end - start + 1;
+
+  const headers = {
+    "Content-Range": `bytes ${ start }-${ end }/${ songSize }`,
+    "Accept-Ranges": "bytes",
+    "Content-Length": contentLength,
+    "Content-Type": "audio/ogg",
+  };
 
   // HTTP Status 206 for Partial Content
   res.writeHead(206, headers);
