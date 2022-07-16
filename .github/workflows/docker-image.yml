@@ -1,3 +1,4 @@
+#!/bin/bash
 name: dispatch node build
 
 on:
