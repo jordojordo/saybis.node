@@ -3,9 +3,9 @@ name: Daphine rising sun
 
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
   pull_request:
-    branches: ["main"]
+    branches: ["master"]
 
 env:
   ACTIONS_RUNNER_DEBUG: true
