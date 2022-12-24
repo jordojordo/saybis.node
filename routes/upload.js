@@ -1,10 +1,10 @@
 const express = require("express");
-const { createTransaction } = require("../api/request");
-
 const router = express.Router();
 
+const { createUpload } = require("../api/upload");
+
 router.post("/", function (req, res) {
-  createTransaction(req, res);
+  createUpload(req, res);
 });
 
 module.exports = router;

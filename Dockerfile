@@ -1,7 +1,10 @@
 #!/bin/bash
 FROM node:latest
 
-WORKDIR /saybis-node
+ENV PUPPETEER_SKIP_DOWNLOAD=true
+ENV VOLUME_PATH=/juche
+
+WORKDIR /src
 
 COPY package*.json ./
 

@@ -9,7 +9,7 @@ const createStream = (req, res) => {
 
   const { video } = req.query;
   const videoType = video.split(".").pop();
-  const videoPath = `./assets/videos/${ video }`;
+  const videoPath = `/${ process.env.VOLUME_PATH }/assets/videos/${ video }`;
   const videoSize = fs.statSync(videoPath).size;
 
   const CHUNK_SIZE = 10 ** 6; // 1MB

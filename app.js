@@ -2,17 +2,23 @@ const createError = require("http-errors");
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
+const fileUpload = require('express-fileupload');
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
 const indexRouter = require("./routes/index");
 const streamRouter = require("./routes/stream");
 const musicRouter = require("./routes/music");
+const uploadRouter = require("./routes/upload");
+const viewRouter = require("./routes/view");
 
 const app = express();
 
-const corsOptions = {
-  origin: ["https://saybis.xyz", "https://yokanga.xyz", "http://127.0.0.1"],
+const CORS_OPT = {
+  origin: [
+    "https://yokanga.xyz",
+    "http://yokanga.xyz",
+  ],
 };
 
 // view engine setup
@@ -23,11 +29,14 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(fileUpload({ debug: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", cors(corsOptions), indexRouter);
-app.use("/stream*", cors(corsOptions), streamRouter);
-app.use("/music*", cors(corsOptions), musicRouter);
+app.use("/", cors(CORS_OPT), indexRouter);
+app.use("/stream*", cors(CORS_OPT), streamRouter);
+app.use("/music*", cors(CORS_OPT), musicRouter);
+// app.use("/upload*", cors(CORS_OPT), uploadRouter);
+app.use("/view*", cors(CORS_OPT), viewRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -7,7 +7,7 @@ const createMusicStream = (req, res) => {
     res.status(400).send("Requires range header");
   }
 
-  const songPath = `./assets/music/${ req.query.song }`;
+  const songPath = `/${ process.env.VOLUME_PATH }/assets/music/${ req.query.song }`;
   const songSize = fs.statSync(songPath).size;
 
   const CHUNK_SIZE = 10 ** 6; // 1MB
