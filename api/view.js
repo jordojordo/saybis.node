@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 createView = (req, res) => {
-  const filesPath = `${ process.env.VOLUME_PATH }/assets/files`;
+  const filesPath = `./assets/files`;
 
   fs.readdir(filesPath, (err, files) => {
     if ( err ) {

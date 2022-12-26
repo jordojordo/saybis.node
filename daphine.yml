@@ -15,16 +15,18 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: juche-pv
+  labels:
+    type: local
 spec:
   capacity:
     storage: 20Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Delete
+  persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage
-  local:
-    path: /mnt/assets
+  hostPath:
+    path: "/mnt/assets"
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -33,6 +35,19 @@ spec:
               operator: In
               values:
                 - minikube
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: juche-pv-claim
+spec:
+  storageClassName: local-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
 
 ---
 apiVersion: apps/v1
@@ -44,20 +59,27 @@ spec:
   selector:
     matchLabels:
       app: daphine
-    template:
-      metadata:
-        labels:
-          app: daphine
-      spec:
-        containers:
-          - name: daphine
-            image: node:latest
-            ports:
-              - containerPort: 3000
-            env:
-              - name: PUPPETEER_SKIP_DOWNLOAD
-                value: true
-            imagePullPolicy: Always
-            volumeMounts: ./
-  volumes:
-    - juche-pv
+  template:
+    metadata:
+      labels:
+        app: daphine
+    spec:
+      nodeName: minikube
+      containers:
+        - name: daphine
+          image: ghcr.io/jordojordo/daphine:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PUPPETEER_SKIP_DOWNLOAD
+              value: "true"
+          imagePullPolicy: Always
+          volumeMounts:
+            - mountPath: "./assets"
+              name: juche-pv
+      imagePullSecrets:
+        - name: ghcr-login-pat
+      volumes:
+        - name: juche-pv
+          persistentVolumeClaim:
+            claimName: juche-pv-claim

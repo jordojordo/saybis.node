@@ -6,7 +6,7 @@ const createUpload = (req, res) => {
   console.log(req.files);
 
   for ( const key of Object.keys(req.files) ) {
-    let uploadPath = `${ process.env.VOLUME_PATH }/assets/files/${ req.files[key].name }`;
+    let uploadPath = `./assets/files/${ req.files[key].name }`;
 
     req.files[key].mv(uploadPath, (err) => {
       if ( err ) {
