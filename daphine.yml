@@ -9,6 +9,31 @@ spec:
     - port: 80
       targetPort: 3000
   type: LoadBalancer
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: juche-pv
+spec:
+  capacity:
+    storage: 20Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: local-storage
+  local:
+    path: /mnt/assets
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - minikube
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,6 +57,7 @@ spec:
             env:
               - name: PUPPETEER_SKIP_DOWNLOAD
                 value: true
-              - name: VOLUME_PATH
-                value: /juche
             imagePullPolicy: Always
+            volumeMounts: ./
+  volumes:
+    - juche-pv
