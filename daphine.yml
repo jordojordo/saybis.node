@@ -34,7 +34,7 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - minikube
+                - local-node
 
 ---
 apiVersion: v1
@@ -64,7 +64,7 @@ spec:
       labels:
         app: daphine
     spec:
-      nodeName: minikube
+      nodeName: local-node
       containers:
         - name: daphine
           image: ghcr.io/jordojordo/daphine:latest

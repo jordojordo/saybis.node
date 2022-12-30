@@ -18,6 +18,10 @@ const CORS_OPT = {
   origin: [
     "https://yokanga.xyz",
     "http://yokanga.xyz",
+    "https://saybis.xyz",
+    "http://saybis.xyz",
+    "https://jordo.in",
+    "http://jordo.in"
   ],
 };
 
