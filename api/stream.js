@@ -25,7 +25,7 @@ const createStream = (req, res) => {
     "Content-Type": `video/${ videoType }`,
   };
 
-  // HTTP Status 206 for Partial Content
+  // http status 206 for partial content
   res.writeHead(206, headers);
 
   // create video read stream for this particular chunk
@@ -36,7 +36,7 @@ const createStream = (req, res) => {
     res.sendStatus(500);
   });
 
-  // Stream the video chunk to the client
+  // stream the video chunk to the client
   videoStream.pipe(res);
 };
 

@@ -2,28 +2,20 @@ const createError = require("http-errors");
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const fileUpload = require('express-fileupload');
+// const fileUpload = require('express-fileupload');
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
 const indexRouter = require("./routes/index");
 const streamRouter = require("./routes/stream");
 const musicRouter = require("./routes/music");
-const uploadRouter = require("./routes/upload");
+// const uploadRouter = require("./routes/upload");
 const viewRouter = require("./routes/view");
 
 const app = express();
 
-const CORS_OPT = {
-  origin: [
-    "https://yokanga.xyz",
-    "http://yokanga.xyz",
-    "https://saybis.xyz",
-    "http://saybis.xyz",
-    "https://jordo.in",
-    "http://jordo.in"
-  ],
-};
+// frontend url(s)
+const CORS_OPT = { origin: [ `${ process.env.CORS_ORIGIN }` ] };
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -33,7 +25,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(fileUpload({ debug: true }));
+// app.use(fileUpload({ debug: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", cors(CORS_OPT), indexRouter);

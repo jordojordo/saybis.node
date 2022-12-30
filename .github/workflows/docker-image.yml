@@ -41,11 +41,10 @@ jobs:
         uses: docker/build-push-action@v3
         env:
           ACTIONS_STEP_DEBUG: true
-          VOLUME_PATH: /juche
         with:
           context: ./
           file: ./Dockerfile
-          platforms: linux/amd64, linux/arm64, linux/arm
+          platforms: linux/amd64, linux/arm64
           push: true
           tags: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest

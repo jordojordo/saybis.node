@@ -1,20 +1,9 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: daphine
-spec:
-  selector:
-    app: daphine
-  ports:
-    - port: 80
-      targetPort: 3000
-  type: LoadBalancer
-
 ---
+# PersistentVolume which contains the data to be streamed
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: juche-pv
+  name: example-pv
   labels:
     type: local
 spec:
@@ -26,6 +15,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage
   hostPath:
+    # Path of the data within the cluster
     path: "/mnt/assets"
   nodeAffinity:
     required:
@@ -37,10 +27,11 @@ spec:
                 - local-node
 
 ---
+# PersistentVolumeClaim spec
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: juche-pv-claim
+  name: example-pv-claim
 spec:
   storageClassName: local-storage
   accessModes:
@@ -50,12 +41,13 @@ spec:
       storage: 20Gi
 
 ---
+# Deployment spec
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: daphine
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: daphine
@@ -73,13 +65,15 @@ spec:
           env:
             - name: PUPPETEER_SKIP_DOWNLOAD
               value: "true"
+            # Frontend url
+            - name: CORS_ORIGIN
+              value: "https://example.com"
           imagePullPolicy: Always
           volumeMounts:
+            # Mount the volume for the container
             - mountPath: "./assets"
-              name: juche-pv
-      imagePullSecrets:
-        - name: ghcr-login-pat
+              name: example-pv
       volumes:
-        - name: juche-pv
+        - name: example-pv
           persistentVolumeClaim:
-            claimName: juche-pv-claim
+            claimName: example-pv-claim

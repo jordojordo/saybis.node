@@ -23,7 +23,7 @@ const createMusicStream = (req, res) => {
     "Content-Type": "audio/ogg",
   };
 
-  // HTTP Status 206 for Partial Content
+  // http status 206 for partial content
   res.writeHead(206, headers);
 
   // create music read stream for this particular chunk
@@ -34,7 +34,7 @@ const createMusicStream = (req, res) => {
     res.sendStatus(500);
   });
 
-  // Stream the music chunk to the client
+  // stream the music chunk to the client
   musicStream.pipe(res);
 };
 
