@@ -1,4 +1,3 @@
-#!/bin/bash
 FROM node:latest
 
 ENV PUPPETEER_SKIP_DOWNLOAD=true
