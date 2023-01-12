@@ -15,7 +15,7 @@ const viewRouter = require("./routes/view");
 const app = express();
 
 // frontend url(s)
-const CORS_OPT = { origin: [ `${ process.env.CORS_ORIGIN }` ] };
+const CORS_OPT = { origin: [`${process.env.CORS_ORIGIN}`] };
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

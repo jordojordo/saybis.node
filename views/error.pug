@@ -1,4 +1,6 @@
 extends layout
 
 block content
-  img(src=`https://http.cat/${ error.status }`)
+  div#error
+    img(src=`https://http.cat/${ error.status }`)
+    pre #{error.stack}
