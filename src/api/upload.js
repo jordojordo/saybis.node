@@ -3,7 +3,7 @@ const createUpload = (req, res) => {
     return res.status(400).send('No files were uploaded.');
   }
 
-  console.log(req.files);
+  console.log(req.files); // eslint-disable-line no-console
 
   for ( const key of Object.keys(req.files) ) {
     let uploadPath = `./assets/files/${ req.files[key].name }`;
@@ -15,7 +15,7 @@ const createUpload = (req, res) => {
 
       res.send('File uploaded.');
     });
-  };
+  }
 };
 
 exports.createUpload = createUpload;

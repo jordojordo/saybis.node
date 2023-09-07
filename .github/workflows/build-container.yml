@@ -1,14 +1,11 @@
-#!/bin/bash
 name: Daphine rising sun
 
 on:
-  push:
-    branches: ["master"]
-  pull_request:
-    branches: ["master"]
+  release:
+    types: [released]
 
 env:
-  ACTIONS_RUNNER_DEBUG: true
+  ACTIONS_RUNNER_DEBUG: false
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
@@ -39,12 +36,10 @@ jobs:
 
       - name: Build and push UI image
         uses: docker/build-push-action@v3
-        env:
-          ACTIONS_STEP_DEBUG: true
         with:
           context: ./
           file: ./Dockerfile
           platforms: linux/amd64
           push: true
           tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref_name }}

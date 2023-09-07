@@ -1,0 +1,9 @@
+node_modules/
+.npm
+.eslintcache
+.env
+.cache
+.next
+dist
+dist-pkg
+.DS_Store

@@ -69,6 +69,13 @@ spec:
             - name: CORS_ORIGIN
               value: "https://example.com"
           imagePullPolicy: Always
+          resources:
+            limits:
+              cpu: 200mi
+              memory: 100Mi
+            requests:
+              cpu: 100mi
+              memory: 50Mi
           volumeMounts:
             # Mount the volume for the container
             - mountPath: "./assets"
