@@ -1,6 +1,6 @@
 {
   "name": "daphine_piaget",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The api for freedom.",
   "private": true,
   "scripts": {
