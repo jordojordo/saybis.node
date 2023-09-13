@@ -1,4 +1,4 @@
-name: Daphine rising sun
+name: Release Daphine Container Image
 
 on:
   release:

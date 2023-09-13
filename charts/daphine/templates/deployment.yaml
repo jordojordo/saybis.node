@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  replicas: {{ .Values.deployment.replicaCount }}
+  selector:
+    matchLabels: {{ .Values.deployment.labels }}
+  template:
+    metadata:
+      labels: {{ .Values.deployment.labels }}
+    spec:
+      nodeName: {{ default "local-node" .Values.nodeName }}
+      containers:
+        - name: {{ .Chart.Name }}-api
+          image: '{{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}'
+          ports:
+            - containerPort: {{ .Values.service.port }}
+          env:
+            - name: PUPPETEER_SKIP_DOWNLOAD
+              value: "true"
+            # Frontend url
+            - name: CORS_ORIGIN
+              value: {{ .Values.frontend }}
+          imagePullPolicy: {{ .Values.deployment.image.imagePullPolicy }}
+          volumeMounts:
+            # Mount the volume for the container
+            - mountPath: "./assets"
+              name: {{ .Values.pv.name }}
+      volumes:
+        - name: {{ .Values.pv.name }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.pvc.name }}
