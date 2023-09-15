@@ -1,0 +1,15 @@
+apiVersion: v1
+entries:
+  daphine:
+  - apiVersion: v2
+    appVersion: 0.1.2-rc1
+    created: "2023-09-15T12:34:56.518968865Z"
+    description: An API for streaming music and videos
+    digest: 4a389b1405892a1539070a40bbf1daf38d3139c1b6c5e81d85f2582aad3a865e
+    home: https://github.com/jordojordo/daphine
+    name: daphine
+    type: application
+    urls:
+    - https://github.com/jordojordo/daphine/releases/download/daphine-0.1.2-rc1/daphine-0.1.2-rc1.tgz
+    version: 0.1.2-rc1
+generated: "2023-09-15T12:34:56.518974965Z"
