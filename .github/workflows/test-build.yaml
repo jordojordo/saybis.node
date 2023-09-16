@@ -26,4 +26,4 @@ jobs:
           image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: ${{ env.TEST_TAG }} ${{ github.sha }}
           containerfiles: |
-            ./Dockerfile
+            ./Containerfile

@@ -14,13 +14,13 @@ env:
 
 jobs:
   build-release-container:
-    if: ${{ github.ref_type }} == 'tag'
+    if: github.ref_type == 'tag' && github.event == 'release'
     runs-on: ubuntu-latest
     permissions:
       actions: write
       contents: read
       deployments: write
-      pages: write
+      packages: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -34,7 +34,7 @@ jobs:
           image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: ${{ github.ref_name }} ${{ github.sha }}
           containerfiles: |
-            ./Dockerfile
+            ./Containerfile
 
       - name: Login to GitHub Container Registry
         uses: redhat-actions/podman-login@v1
@@ -52,7 +52,7 @@ jobs:
           registry: ${{ env.REGISTRY }}
 
   release-chart:
-    if: ${{ github.ref_type }} == 'branch'
+    if: github.event == 'push' && github.ref == 'refs/heads/master'
     permissions:
       contents: write
     runs-on: ubuntu-latest

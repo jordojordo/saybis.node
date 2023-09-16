@@ -13,7 +13,7 @@ spec:
       nodeName: {{ default "local-node" .Values.nodeName }}
       containers:
         - name: {{ .Chart.Name }}-api
-          image: '{{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag }}'
+          image: '{{ .Values.deployment.image.repository }}:{{ .Values.deployment.image.tag | default .Chart.AppVersion }}'
           ports:
             - containerPort: {{ .Values.service.port }}
           env:
@@ -21,7 +21,7 @@ spec:
               value: "true"
             # Frontend url
             - name: CORS_ORIGIN
-              value: {{ .Values.frontend }}
+              value: {{ required "A valid frontend url is required." .Values.frontend }}
           imagePullPolicy: {{ .Values.deployment.image.imagePullPolicy }}
           volumeMounts:
             # Mount the volume for the container
