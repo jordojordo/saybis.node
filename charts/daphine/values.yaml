@@ -7,7 +7,7 @@ deployment:
   image:
     repository: 'ghcr.io/jordojordo/daphine'
     pullPolicy: 'IfNotPresent'
-    tag: '0.1.1'
+    tag: ''
 
 service:
   type: 'ClusterIP'

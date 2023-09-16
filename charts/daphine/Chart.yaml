@@ -3,5 +3,5 @@ name: daphine
 description: An API for streaming music and videos
 type: application
 home: 'https://github.com/jordojordo/daphine'
-version: '0.1.2-rc1'
-appVersion: '0.1.2-rc1'
+version: '0.1.2-rc2'
+appVersion: '0.1.2-rc2'
