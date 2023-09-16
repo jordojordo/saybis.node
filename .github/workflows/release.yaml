@@ -52,7 +52,7 @@ jobs:
           registry: ${{ env.REGISTRY }}
 
   release-chart:
-    if: github.event == 'push' && github.ref == 'refs/heads/master'
+    if: github.event == 'push'
     permissions:
       contents: write
     runs-on: ubuntu-latest
