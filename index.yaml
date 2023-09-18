@@ -13,6 +13,17 @@ entries:
     - https://github.com/jordojordo/daphine/releases/download/daphine-0.1.2-rc2/daphine-0.1.2-rc2.tgz
     version: 0.1.2-rc2
   - apiVersion: v2
+    appVersion: 0.1.2-rc2
+    created: "2023-09-18T11:34:52.744035236Z"
+    description: An API for streaming music and videos
+    digest: b9144ad86c9ca795460bbf1f1ea1517256542d63bfed54c40927b20c65fc443c
+    home: https://github.com/jordojordo/daphine
+    name: daphine
+    type: application
+    urls:
+    - https://github.com/jordojordo/daphine/releases/download/daphine-0.1.2-rc2/daphine-0.1.2-rc2.tgz
+    version: 0.1.2-rc2
+  - apiVersion: v2
     appVersion: 0.1.2-rc1
     created: "2023-09-15T12:34:56.518968865Z"
     description: An API for streaming music and videos
@@ -23,4 +34,4 @@ entries:
     urls:
     - https://github.com/jordojordo/daphine/releases/download/daphine-0.1.2-rc1/daphine-0.1.2-rc1.tgz
     version: 0.1.2-rc1
-generated: "2023-09-16T17:09:28.74990229Z"
+generated: "2023-09-18T11:34:52.744191037Z"
