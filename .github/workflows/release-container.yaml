@@ -2,6 +2,7 @@ name: Release Daphine Container
 
 on:
   release:
+    types: [released]
 
 env:
   ACTIONS_RUNNER_DEBUG: false
