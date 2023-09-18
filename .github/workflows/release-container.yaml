@@ -2,7 +2,6 @@ name: Release Daphine Container
 
 on:
   release:
-    types: [released]
 
 env:
   ACTIONS_RUNNER_DEBUG: false
@@ -11,7 +10,7 @@ env:
 
 jobs:
   build-release-container:
-    if: github.ref_type == 'tag' && github.event == 'release'
+    if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
     permissions:
       actions: write

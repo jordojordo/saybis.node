@@ -1,4 +1,4 @@
-name: Release Daphine Chart
+name: Release Daphine
 
 on:
   push:
