@@ -1,5 +1,8 @@
-node_modules
 npm-debug.log
-Dockerfile
-.dockerignore
+dist
+node_modules
+Containerfile
+.containerignore
 .git*
+eslint*
+renovate.json
