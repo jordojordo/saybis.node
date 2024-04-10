@@ -87,7 +87,7 @@ spec:
           imagePullPolicy: Always
           volumeMounts:
             # Mount the volume for the container
-            - mountPath: "./assets"
+            - mountPath: "/usr/src/app/assets"
               name: example-pv
       volumes:
         - name: example-pv
