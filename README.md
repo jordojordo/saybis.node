@@ -1,10 +1,12 @@
+[![Build Tests](https://github.com/jordojordo/daphine/actions/workflows/test-build.yml/badge.svg?event=schedule)](https://github.com/jordojordo/daphine/actions/workflows/test-build.yml)
+
 # Daphine
 
 An api for streaming music and videos.
 
 ## Usage
 
-Depending on your requirements you can run Daphine as a deployment in [Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), a [Docker container](https://docs.docker.com/engine/reference/commandline/container/), or simply running as a [Nodejs service](https://nodejs.org/dist/latest-v18.x/docs/api/synopsis.html) on your server. However, the setup for each requires a few different steps.
+Depending on your requirements you can run Daphine as a deployment in [Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), a [Podman](https://podman.io/docs#running-a-container) or [Docker](https://docs.docker.com/engine/reference/commandline/container/) container, or by simply running as a [Nodejs service](https://nodejs.org/dist/latest-v18.x/docs/api/synopsis.html) on your server. However, the setup for each requires a few different steps.
 
 ### Kubernetes deployment
 
@@ -79,8 +81,6 @@ spec:
           ports:
             - containerPort: 3000
           env:
-            - name: PUPPETEER_SKIP_DOWNLOAD
-              value: "true"
             # Frontend url
             - name: CORS_ORIGIN
               value: "https://example.com"
@@ -114,5 +114,6 @@ Add the url of your frontend to the [`CORS_OPT.origin`](https://github.com/jordo
 
 ```console
 npm install
+npm run build
 npm start
 ```
