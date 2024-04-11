@@ -1,4 +1,4 @@
-[![Build Tests](https://github.com/jordojordo/daphine/actions/workflows/test-build.yml/badge.svg?event=schedule)](https://github.com/jordojordo/daphine/actions/workflows/test-build.yml)
+[![Build Tests](https://github.com/jordojordo/daphine/actions/workflows/test-build.yaml/badge.svg)](https://github.com/jordojordo/daphine/actions/workflows/test-build.yaml)
 
 # Daphine
 
