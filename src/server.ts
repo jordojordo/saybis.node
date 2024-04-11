@@ -1,5 +1,7 @@
 import http from 'http';
+
 import app from './index';
+import serverEvents from '@src/modules/serverEventEmitter';
 
 const normalizePort = (val: string): number | string | void => {
 	const port = parseInt(val, 10);
@@ -12,13 +14,15 @@ const normalizePort = (val: string): number | string | void => {
 	if ( port >= 0 ) {
 		return port;
 	}
-
-
 };
 
 const onError = (error: NodeJS.ErrnoException): void => {
 	if ( error.syscall !== 'listen' ) {
 		throw error;
+	}
+
+	if ( error.syscall === 'listen' ) {
+		serverEvents.markServerAsNotReady();
 	}
 
 	const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
@@ -38,8 +42,7 @@ const onError = (error: NodeJS.ErrnoException): void => {
 };
 
 const onListening = (): void => {
-	const addr = server.address();
-	const bind = typeof addr === 'string' ? `pipe ${ addr }` : `port ${ addr?.port }`;
+	serverEvents.markServerAsReady();
 };
 
 const port = normalizePort(process.env.PORT || '3000');

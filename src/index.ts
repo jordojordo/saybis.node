@@ -11,6 +11,7 @@ import streamRouter from '@routes/stream';
 import musicRouter from '@routes/music';
 // import uploadRouter from "@routes/upload";
 import viewRouter from '@routes/view';
+import healthRouter from '@routes/health';
 
 import { sendErrorResponse } from '@src/utils/error';
 
@@ -29,6 +30,8 @@ app.use('/stream*', cors(CORS_OPT), streamRouter);
 app.use('/music*', cors(CORS_OPT), musicRouter);
 // app.use("/upload*", cors(CORS_OPT), uploadRouter);
 app.use('/view*', cors(CORS_OPT), viewRouter);
+app.use('/health', cors(CORS_OPT), healthRouter);
+app.use('/ready', cors(CORS_OPT), healthRouter);
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
