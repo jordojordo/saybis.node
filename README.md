@@ -8,92 +8,21 @@ An api for streaming music and videos.
 
 Depending on your requirements you can run Daphine as a deployment in [Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), a [Podman](https://podman.io/docs#running-a-container) or [Docker](https://docs.docker.com/engine/reference/commandline/container/) container, or by simply running as a [Nodejs service](https://nodejs.org/dist/latest-v18.x/docs/api/synopsis.html) on your server. However, the setup for each requires a few different steps.
 
-### Kubernetes deployment
+### Kubernetes deployment using Helm
 
-Your Cluster will need to have a [PersistentVolume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) and [PersistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims) for the data you wish to stream.
+Deploy Daphine easily in your Kubernetes cluster using Helm. First, add the Helm repository:
 
-For instance:
-
-```yml
-## daphine.yml
----
-# PersistentVolume which contains the data to be streamed
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: example-pv
-  labels:
-    type: local
-spec:
-  capacity:
-    storage: 20Gi
-  volumeMode: Filesystem
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: local-storage
-  hostPath:
-    # Path of the data within the cluster
-    path: "/mnt/assets"
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: kubernetes.io/hostname
-              operator: In
-              values:
-                - local-node
-
----
-# PersistentVolumeClaim spec
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: example-pv-claim
-spec:
-  storageClassName: local-storage
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 20Gi
-
----
-# Deployment spec
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: daphine
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: daphine
-  template:
-    metadata:
-      labels:
-        app: daphine
-    spec:
-      nodeName: local-node
-      containers:
-        - name: daphine
-          image: ghcr.io/jordojordo/daphine:latest
-          ports:
-            - containerPort: 3000
-          env:
-            # Frontend url
-            - name: CORS_ORIGIN
-              value: "https://example.com"
-          imagePullPolicy: Always
-          volumeMounts:
-            # Mount the volume for the container
-            - mountPath: "/usr/src/app/assets"
-              name: example-pv
-      volumes:
-        - name: example-pv
-          persistentVolumeClaim:
-            claimName: example-pv-claim
+```console
+helm repo add jordojordo https://jordojordo.github.io/helm-charts
 ```
+
+Then, install Daphine using the Helm chart:
+
+```console
+helm install daphine jordojordo/daphine
+```
+
+For more details about the installation process, including prerequisites and how to configure the Helm chart, see the [Daphine Helm Chart README](https://github.com/jordojordo/helm-charts/tree/master/charts/daphine).
 
 ### Docker container
 
