@@ -2,9 +2,11 @@
 
 # Daphine
 
-An api for streaming music and videos.
+An api for streaming music and videos. See it in action on [yokanga.xyz](https://yokanga.xyz).
 
 ## Usage
+
+> An example Vue app using this API can be found [here](https://github.com/jordojordo/yokanga.xyz).
 
 Depending on your requirements you can run Daphine as a deployment in [Kubernetes](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/), a [Podman](https://podman.io/docs#running-a-container) or [Docker](https://docs.docker.com/engine/reference/commandline/container/) container, or by simply running as a [Nodejs service](https://nodejs.org/dist/latest-v18.x/docs/api/synopsis.html) on your server. However, the setup for each requires a few different steps.
 
