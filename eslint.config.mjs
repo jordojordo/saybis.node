@@ -2,7 +2,7 @@ import globals from 'globals';
 
 export default [
   { languageOptions: { globals: globals.node } },
-  { ignores: ['dist/*', 'node_modules/*'] },
+  { ignores: ['dist/*', 'node_modules/*', 'pnpm-lock.yaml'] },
   {
     'rules':       {
       'dot-notation':                   'off',

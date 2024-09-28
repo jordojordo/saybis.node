@@ -1,13 +1,16 @@
 # Build stage
-FROM node:20-alpine AS build
+FROM node:22-alpine AS build
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 WORKDIR /usr/src/app
 COPY package*.json ./
-RUN npm install
+RUN pnpm install
 COPY . .
-RUN npm run build
+RUN pnpm build
 
 # Server stage
-FROM node:20-alpine
+FROM node:22-alpine
 WORKDIR /usr/src/app
 COPY --from=build /usr/src/app/dist ./dist
 COPY --from=build /usr/src/app/package.json ./
