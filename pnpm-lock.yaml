@@ -59,13 +59,13 @@ importers:
         version: 1.10.0
       puppeteer:
         specifier: ^23.4.1
-        version: 23.4.1(typescript@5.6.2)
+        version: 23.4.1(typescript@5.7.2)
       tsc-watch:
         specifier: ^6.2.0
-        version: 6.2.0(typescript@5.6.2)
+        version: 6.2.0(typescript@5.7.2)
       typescript:
         specifier: ^5.6.2
-        version: 5.6.2
+        version: 5.7.2
 
 packages:
 
@@ -1154,8 +1154,8 @@ packages:
   typed-query-selector@2.12.0:
     resolution: {integrity: sha512-SbklCd1F0EiZOyPiW192rrHZzZ5sBijB6xM+cpmrwDqObvdtunOHHIk9fCGsoK5JVIYXoyEp4iEdE3upFH3PAg==}
 
-  typescript@5.6.2:
-    resolution: {integrity: sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==}
+  typescript@5.7.2:
+    resolution: {integrity: sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -1607,14 +1607,14 @@ snapshots:
       object-assign: 4.1.1
       vary: 1.1.2
 
-  cosmiconfig@9.0.0(typescript@5.6.2):
+  cosmiconfig@9.0.0(typescript@5.7.2):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 5.6.2
+      typescript: 5.7.2
 
   cross-spawn@7.0.3:
     dependencies:
@@ -2251,11 +2251,11 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  puppeteer@23.4.1(typescript@5.6.2):
+  puppeteer@23.4.1(typescript@5.7.2):
     dependencies:
       '@puppeteer/browsers': 2.4.0
       chromium-bidi: 0.6.5(devtools-protocol@0.0.1342118)
-      cosmiconfig: 9.0.0(typescript@5.6.2)
+      cosmiconfig: 9.0.0(typescript@5.7.2)
       devtools-protocol: 0.0.1342118
       puppeteer-core: 23.4.1
       typed-query-selector: 2.12.0
@@ -2455,13 +2455,13 @@ snapshots:
 
   toidentifier@1.0.1: {}
 
-  tsc-watch@6.2.0(typescript@5.6.2):
+  tsc-watch@6.2.0(typescript@5.7.2):
     dependencies:
       cross-spawn: 7.0.3
       node-cleanup: 2.1.2
       ps-tree: 1.2.0
       string-argv: 0.3.2
-      typescript: 5.6.2
+      typescript: 5.7.2
 
   tslib@2.7.0: {}
 
@@ -2476,7 +2476,7 @@ snapshots:
 
   typed-query-selector@2.12.0: {}
 
-  typescript@5.6.2: {}
+  typescript@5.7.2: {}
 
   unbzip2-stream@1.4.3:
     dependencies:
